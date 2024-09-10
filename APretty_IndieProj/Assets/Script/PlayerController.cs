@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        //running is triggered by left mouse click//
+        //running is triggered by right mouse click//
         bool isRunning = Input.GetKey(KeyCode.Mouse1);
 
         
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
 
-
+        //mouse camera pov//
         if (canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
