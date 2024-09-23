@@ -5,7 +5,9 @@ using UnityEngine;
 public class SelectionManager : MonoBehaviour
 {
     // bringing in info for refrence
-    public GameObject Panel;
+    public GameObject[] Panel;
+
+
 
     void Update()
     {   
@@ -23,13 +25,13 @@ public class SelectionManager : MonoBehaviour
 
             if(selection == "Green"){
             Debug.Log("Selection Script: green button");
-            Panel.GetComponent<ElectricalPanel>().OnGreenButtonClick();
+            Panel[0].GetComponent<ElectricalPanel>().OnGreenButtonClick();
             }
 
 
             if(selection == "Red"){
                 Debug.Log("Selection Script: red button");
-                Panel.GetComponent<ElectricalPanel>().OnRedButtonClick();
+            Panel[0].GetComponent<ElectricalPanel>().OnRedButtonClick();
 
             }
         }

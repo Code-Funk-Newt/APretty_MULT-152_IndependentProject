@@ -8,8 +8,18 @@ public class ElectricalPanel : MonoBehaviour
 {
     public GameObject greenButton;
     public GameObject redButton;
+    public GameObject offline;
+    public GameObject online;
     public GameObject door;
-    public bool puzzleSolved = false;       // This should be set to true when the puzzle is solved
+
+    public GameObject lockLight;
+    public Material redlight;
+    public Material greenlight;
+    public Material offlight;
+
+    public bool puzzleSolved = false; // This should be set to true when the puzzle is solved
+
+     
 
 
     private void Start()
@@ -19,6 +29,12 @@ public class ElectricalPanel : MonoBehaviour
      // Ensure buttons are interactive only if the puzzle is solved
         greenButton.SetActive(puzzleSolved);
         redButton.SetActive(puzzleSolved);
+        online.SetActive(puzzleSolved);
+        offline.SetActive(puzzleSolved);
+
+
+        
+        
     }
 
 
@@ -36,12 +52,19 @@ public class ElectricalPanel : MonoBehaviour
             // Enable button interaction
             greenButton.SetActive(true);
             redButton.SetActive(true);
+            online.SetActive(true);
+            offline.SetActive(false);
+
         }
         else
         {
             // Disable button interaction
-            greenButton.SetActive(false);
-            redButton.SetActive(false);
+            greenButton.GetComponent<Renderer>().material = offlight;
+            redButton.GetComponent<Renderer>().material = offlight;
+            offline.SetActive(true);
+            online.SetActive(false);
+            lockLight.GetComponent<Renderer>().material = offlight;
+
         }
 
        
@@ -50,7 +73,6 @@ public class ElectricalPanel : MonoBehaviour
 
 
     }
-
 
 
 
@@ -79,11 +101,15 @@ public class ElectricalPanel : MonoBehaviour
         // Logic to open the door
         Debug.Log("greenclick:ii");
         door.GetComponent<Door>().Open();
+        lockLight.GetComponent<Renderer>().material = greenlight; //green light on
     }
 
     private void LockDoor()
     {
         // Logic to lock the door
         door.GetComponent<Door>().Lock();
+        lockLight.GetComponent<Renderer>().material = redlight; //red light on
     }
+
+    
 }

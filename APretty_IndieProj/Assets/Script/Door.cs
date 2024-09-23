@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     public float moveSpeed = 3f; // Speed at which the door moves up and down
     public float openHeight = 9f; // Height to which the door moves up
 
-    public GameObject doorSelected;
+    
 
    
 
@@ -25,8 +25,8 @@ public class Door : MonoBehaviour
 
     private void Update(){
         
-        OnTriggerEnter();
-        OnTriggerExit();
+        
+        
     }
 
 
@@ -50,8 +50,9 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter()
+    private void OnTriggerStay(Collider other)
     {
+        Debug.Log("Triggered");
         if (isOpen)
         {   
             Open();
@@ -60,11 +61,12 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit()
+    private void OnTriggerExit(Collider other)
     {
-        if (!isOpen)
+        Debug.Log("Untriggered");
+        if (isOpen)
         {   
-            Lock();
+            //Lock();
             StopAllCoroutines(); // Stop any ongoing movement
             StartCoroutine(MoveDoor(initialPosition));
         }
