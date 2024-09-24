@@ -8,12 +8,10 @@ public class Door : MonoBehaviour
     private bool isOpen = false;
     public float moveSpeed = 3f; // Speed at which the door moves up and down
     public float openHeight = 9f; // Height to which the door moves up
-
-    
-
-   
-
     private Vector3 initialPosition;
+
+
+
 
     private void Start()
     {
@@ -22,12 +20,17 @@ public class Door : MonoBehaviour
 
 
     }
-
     private void Update(){
         
         
         
     }
+
+
+
+
+
+
 
 
     public void Open()
@@ -49,6 +52,22 @@ public class Door : MonoBehaviour
             // Add animation or other effects here
         }
     }
+
+    public void shutDown(){
+        isOpen = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void OnTriggerStay(Collider other)
     {

@@ -11,11 +11,12 @@ public class ElectricalPanel : MonoBehaviour
     public GameObject offline;
     public GameObject online;
     public GameObject door;
-
     public GameObject lockLight;
     public Material redlight;
     public Material greenlight;
     public Material offlight;
+    public Material greenBtnColor;
+    public Material redBtnColor;
 
     public bool puzzleSolved = false; // This should be set to true when the puzzle is solved
 
@@ -50,6 +51,8 @@ public class ElectricalPanel : MonoBehaviour
         if (puzzleSolved)
         {
             // Enable button interaction
+            greenButton.GetComponent<Renderer>().material = greenBtnColor;
+            redButton.GetComponent<Renderer>().material = redBtnColor;
             greenButton.SetActive(true);
             redButton.SetActive(true);
             online.SetActive(true);
@@ -64,6 +67,7 @@ public class ElectricalPanel : MonoBehaviour
             offline.SetActive(true);
             online.SetActive(false);
             lockLight.GetComponent<Renderer>().material = offlight;
+            door.GetComponent<Door>().shutDown();
 
         }
 

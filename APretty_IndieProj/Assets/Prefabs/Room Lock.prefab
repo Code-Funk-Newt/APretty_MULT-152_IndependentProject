@@ -968,6 +968,8 @@ MonoBehaviour:
   redlight: {fileID: 2100000, guid: b3da5b06b52b74b6cb8116b39a370e97, type: 2}
   greenlight: {fileID: 2100000, guid: 0370d14038ab847749dd0beedc3ae0c9, type: 2}
   offlight: {fileID: 2100000, guid: 2e3bd1be8dd204b7a96b5f450bece8a8, type: 2}
+  greenBtnColor: {fileID: 2100000, guid: af2f57712898b4c6398f9837e5f14e24, type: 2}
+  redBtnColor: {fileID: 2100000, guid: b8dec9effbd604d358eae8c0957da1f4, type: 2}
   puzzleSolved: 1
 --- !u!1 &8453098420155585845
 GameObject:
