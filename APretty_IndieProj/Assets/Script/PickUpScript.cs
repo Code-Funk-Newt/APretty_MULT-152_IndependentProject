@@ -7,6 +7,8 @@ public class PickUpScript : MonoBehaviour
     public GameObject player;
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
+    public Transform rotatePos;
+
     public float pickUpRange = 5f; //how far the player can pickup the object from
     private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
     private GameObject heldObj; //object which we pick up
@@ -26,7 +28,7 @@ public class PickUpScript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
+        if (Input.GetKeyDown(KeyCode.E))    // E to pick up
         {
             if (heldObj == null) //if currently not holding anything
             {
@@ -44,25 +46,24 @@ public class PickUpScript : MonoBehaviour
                     }
                 }
             }
-            else
-            {
+        }
+
+        
+            if (Input.GetKeyDown(KeyCode.F)){   //F to drop
                 if(canDrop == true)
                 {
                     StopClipping(); //prevents object from clipping through walls
                     DropObject();
+
                 }
             }
-        }
+
+        
         if (heldObj != null) //if player is holding object
         {
             MoveObject(); //keep object position at holdPos
             RotateObject();
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
-            {
-                StopClipping();
-                
-            }
-
+            
         }
     }
     void PickUpObject(GameObject pickUpObj)
@@ -92,12 +93,17 @@ public class PickUpScript : MonoBehaviour
         //keep object position the same as the holdPosition position
         heldObj.transform.position = holdPos.transform.position;
     }
+
+
+
     void RotateObject()
     {
         if (Input.GetKey(KeyCode.R))//hold R key to rotate, change this to whatever key you want
         {
             canDrop = false; //make sure throwing can't occur during rotating
 
+
+            heldObjRb.transform.position = rotatePos.transform.position;
             //disable player being able to look around
             //mouseLookScript.verticalSensitivity = 0f;
             //mouseLookScript.lateralSensitivity = 0f;
@@ -116,6 +122,12 @@ public class PickUpScript : MonoBehaviour
             canDrop = true;
         }
     }
+
+
+
+
+
+
     void StopClipping() //function only called when dropping/throwing
     {
         var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
