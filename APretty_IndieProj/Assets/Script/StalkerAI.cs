@@ -8,13 +8,18 @@ public class StalkerAI : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform player;
+    public GameObject gameM;
     public float detectionRange = 15f;
     public float chaseSpeed = 3.5f;
     public float patrolSpeed = 2f;
+    
+    
 
     private NavMeshAgent agent;
     private int currentWaypointIndex;
     private bool isChasing;
+    public bool playerIsCaught;
+   
 
     void Start()
     {
@@ -26,6 +31,9 @@ public class StalkerAI : MonoBehaviour
 
     void Update()
     {
+        
+        if(!playerIsCaught){
+
         if (isChasing)
         {
             ChasePlayer();
@@ -35,10 +43,18 @@ public class StalkerAI : MonoBehaviour
             Patrol();
             DetectPlayer();
         }
+
+        }
+        else{
+            Stop();
+        }
+
+        
     }
 
 void Patrol() 
 { 
+
     agent.speed = patrolSpeed; 
     if (agent.remainingDistance < 0.5f) 
     { 
@@ -46,6 +62,7 @@ void Patrol()
         agent.SetDestination(waypoints[currentWaypointIndex].position); 
         StartCoroutine(RandomPause()); 
     } 
+
 } 
  
 IEnumerator RandomPause() 
@@ -72,6 +89,7 @@ IEnumerator RandomPause()
 
     void ChasePlayer()
     {
+       
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
 
@@ -80,6 +98,13 @@ IEnumerator RandomPause()
         {
             isChasing = false;
         }
+        
+    }
+
+    void Stop(){
+
+        agent.SetDestination( transform.position );
+        agent.speed = 0;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -88,6 +113,10 @@ IEnumerator RandomPause()
         {
             // Handle player losing the game
             Debug.Log("Player caught by the stalker! Game Over.");
+            gameM.GetComponent<GameManagerScript>().gameOver();
+            playerIsCaught = true;
+
+
             // Add your game over logic here
         }
     }

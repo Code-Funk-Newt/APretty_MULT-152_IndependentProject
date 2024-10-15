@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float rotationX = 0;
     private CharacterController characterController;
 
+    public bool isCaught; 
+
     private bool canMove = true;
 
     void Start()
@@ -30,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+    
+    if(!isCaught){    
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -78,6 +81,8 @@ public class PlayerController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+
     }
 }
 
