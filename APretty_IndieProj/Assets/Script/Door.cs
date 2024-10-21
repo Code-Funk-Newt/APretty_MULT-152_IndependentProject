@@ -10,6 +10,10 @@ public class Door : MonoBehaviour
     public float openHeight = 9f; // Height to which the door moves up
     private Vector3 initialPosition;
 
+    public AudioClip doorUpsound;
+
+    private AudioSource asPlayer;
+
 
 
 
@@ -17,6 +21,7 @@ public class Door : MonoBehaviour
     {
 
         initialPosition = transform.position;
+        asPlayer = GetComponent<AudioSource>();
 
 
     }
@@ -74,6 +79,7 @@ public class Door : MonoBehaviour
         Debug.Log("Triggered");
         if (isOpen)
         {   
+            
             Open();
             StopAllCoroutines(); // Stop any ongoing movement
             StartCoroutine(MoveDoor(initialPosition + new Vector3(0, openHeight, 0)));
@@ -85,6 +91,7 @@ public class Door : MonoBehaviour
         Debug.Log("Untriggered");
         if (isOpen)
         {   
+            
             //Lock();
             StopAllCoroutines(); // Stop any ongoing movement
             StartCoroutine(MoveDoor(initialPosition));
@@ -95,6 +102,7 @@ public class Door : MonoBehaviour
     {
         while (transform.position != targetPosition)
         {
+            asPlayer.PlayOneShot(doorUpsound, 0.5f);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }

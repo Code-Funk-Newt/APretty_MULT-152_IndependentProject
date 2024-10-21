@@ -19,6 +19,10 @@ public class StalkerAI : MonoBehaviour
     private int currentWaypointIndex;
     private bool isChasing;
     public bool playerIsCaught;
+
+    public AudioClip patrolSound;
+    public AudioClip chaseSound;
+    private AudioSource asPlayer;
    
 
     void Start()
@@ -26,7 +30,9 @@ public class StalkerAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         currentWaypointIndex = 0;
         isChasing = false;
+        asPlayer = GetComponent<AudioSource>();
         Patrol();
+        
     }
 
     void Update()
@@ -49,11 +55,14 @@ public class StalkerAI : MonoBehaviour
             Stop();
         }
 
+    
         
     }
 
 void Patrol() 
-{ 
+{   
+    
+
 
     agent.speed = patrolSpeed; 
     if (agent.remainingDistance < 0.5f) 
@@ -83,20 +92,30 @@ IEnumerator RandomPause()
         float distanceToPlayer = (player.position - transform.position).sqrMagnitude;
         if (distanceToPlayer < detectionRange * detectionRange)
         {
+            
+            asPlayer.clip = chaseSound; //switch to chaseSound 
+            asPlayer.Play();
+
+
             isChasing = true;
         }
     }
 
     void ChasePlayer()
     {
-       
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
 
         float distanceToPlayer = (player.position - transform.position).sqrMagnitude;
         if (distanceToPlayer > detectionRange * detectionRange)
         {
-            isChasing = false;
+            isChasing = false;    // chase is over
+
+
+            asPlayer.clip = patrolSound;    //switch to patrolSound
+            asPlayer.Play();
+
+
         }
         
     }
@@ -105,6 +124,8 @@ IEnumerator RandomPause()
 
         agent.SetDestination( transform.position );
         agent.speed = 0;
+        asPlayer.Stop();
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -115,6 +136,7 @@ IEnumerator RandomPause()
             Debug.Log("Player caught by the stalker! Game Over.");
             gameM.GetComponent<GameManagerScript>().gameOver();
             playerIsCaught = true;
+
 
 
             // Add your game over logic here

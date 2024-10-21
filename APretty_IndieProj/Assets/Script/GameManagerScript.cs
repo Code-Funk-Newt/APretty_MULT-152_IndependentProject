@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,12 +8,14 @@ public class GameManagerScript : MonoBehaviour
 {
     public GameObject player;
     public GameObject gameOverUI;
+    private AudioSource asPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        asPlayer = GetComponent<AudioSource>();
 
     }
 
@@ -32,6 +35,10 @@ public class GameManagerScript : MonoBehaviour
     public void gameOver(){
         gameOverUI.SetActive(true); // trigger gameover screen
         player.GetComponent<PlayerController>().isCaught = true;   // stop player movement 
+
+        
+        asPlayer.Play();
+
         
     }
     public void restart(){

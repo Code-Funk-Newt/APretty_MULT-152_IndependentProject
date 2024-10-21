@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,6 +19,9 @@ public class ElectricalPanel : MonoBehaviour
     public Material greenBtnColor;
     public Material redBtnColor;
 
+    public AudioSource asPlayer;
+    public AudioClip buttonActive;
+
     public bool puzzleSolved = false; // This should be set to true when the puzzle is solved
 
      
@@ -32,6 +36,7 @@ public class ElectricalPanel : MonoBehaviour
         redButton.SetActive(puzzleSolved);
         online.SetActive(puzzleSolved);
         offline.SetActive(puzzleSolved);
+        asPlayer=GetComponent<AudioSource>();
 
 
         
@@ -87,6 +92,7 @@ public class ElectricalPanel : MonoBehaviour
         if (puzzleSolved)
         {
             Debug.Log("greenclick");
+            asPlayer.PlayOneShot(buttonActive,0.5f); //sound
             OpenDoor();
         }
     }
@@ -96,6 +102,7 @@ public class ElectricalPanel : MonoBehaviour
         if (puzzleSolved)
         {
             Debug.Log("redclick");
+            asPlayer.PlayOneShot(buttonActive,0.5f); //sound
             LockDoor();
         }
     }

@@ -15,13 +15,42 @@ public class SecurityCamera : MonoBehaviour
     private float initialRotationY;
     private Mesh viewMesh;
 
+
+    public AudioClip cameraRoatatingSound;
+    public AudioClip cameraBurntSound;
+    public AudioClip cameraBlowoutSound; 
+    private AudioSource asPlayer;
+
+    
+    private Animator animCameraLight;
+    private Animator animCameraBody;
+    public GameObject spotLightobject;
+    public GameObject cameraBodyshape;
+
+
+
+    public ParticleSystem sparks;
+
+
     private void Start()
     {
-        initialRotationY = transform.eulerAngles.y;
+        initialRotationY = transform.eulerAngles.y;  // FUNCTION
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         StartCoroutine(DetectPlayer());
+
+
+        asPlayer = GetComponent<AudioSource>(); // SOUND
+        asPlayer.clip = cameraRoatatingSound;
+        asPlayer.loop = true;
+        asPlayer.Play();
+        
+        animCameraLight = spotLightobject.GetComponent<Animator>();
+        animCameraBody = cameraBodyshape.GetComponent<Animator>();
+
+
+
     }
 
     private void Update()
@@ -44,7 +73,9 @@ public class SecurityCamera : MonoBehaviour
         while (true)
         {
             if (isActive)
-            {
+            {      
+
+                
                 Vector3 directionToPlayer = player.position - transform.position;
                 float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
@@ -159,4 +190,22 @@ public class SecurityCamera : MonoBehaviour
             angle = _angle;
         }
     }
+
+    public void shutDown(){
+            Debug.Log("Camera is shut off");
+            isActive = false;
+
+
+            asPlayer.PlayOneShot(cameraBlowoutSound, 0.9f);  // SOUND
+            asPlayer.clip = cameraBurntSound;
+            asPlayer.Play();
+
+            animCameraBody.SetBool("cameraDeath", true);     // ANIMATION
+            animCameraLight.SetBool("cameraDead", true);
+
+
+            sparks.Play();
+
+
+        }
 }
