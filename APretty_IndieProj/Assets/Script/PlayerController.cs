@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public Camera playerCamera;
+
+
+    public Camera playerCamera;   // player movement
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
     public float jumpPower = 4f;
@@ -19,9 +23,34 @@ public class PlayerController : MonoBehaviour
     private float rotationX = 0;
     private CharacterController characterController;
 
-    public bool isCaught; 
 
-    private bool canMove = true;
+
+
+
+
+
+    public bool isCaught;               //GameOver freeze
+    private bool canMove = true;        
+
+
+
+
+
+    
+    private bool hasPowerUp = false;   //Power up 
+    public GameObject xRayVisor;
+    [SerializeField] private UniversalRendererData renderComponent;
+
+
+    public AudioClip testTubeSmash;
+    public AudioClip heartPounding;
+    public AudioClip exhaleCooldown;
+    public AudioSource asPlayer;
+
+
+
+
+
 
     void Start()
     {
@@ -82,6 +111,37 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
+
+    }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other){
+        if(other.CompareTag("powerUp")){
+        hasPowerUp = true;
+        Destroy(other.gameObject);
+        xRayVisor.SetActive(true);
+        StartCoroutine(powerUpCountDown());
+        renderComponent.rendererFeatures[1].SetActive(hasPowerUp);
+        asPlayer.PlayOneShot(testTubeSmash, 0.7f);
+        asPlayer.clip = heartPounding;
+        asPlayer.loop = true;
+        asPlayer.Play();
+
+
+
+    }
+    }
+
+    IEnumerator powerUpCountDown(){
+        yield return new WaitForSeconds(8);
+        hasPowerUp = false;
+        xRayVisor.SetActive(false);
+        renderComponent.rendererFeatures[1].SetActive(hasPowerUp);
+        asPlayer.loop=false;
+        asPlayer.PlayOneShot(exhaleCooldown, 0.9f);
 
     }
 }

@@ -71,7 +71,8 @@ public class PickUpScript : MonoBehaviour
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
 
             Vector3 playerEulerAngles = player.transform.eulerAngles;
-            heldObjRb.transform.rotation = Quaternion.Euler(0, playerEulerAngles.y, 0); //parallel rotation to the camera
+            heldObjRb.transform.rotation = Quaternion.Euler(0 , playerEulerAngles.y, 0); //parallel rotation to the camera
+             
 
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
             //make sure object doesnt collide with player, it can cause weird bugs
