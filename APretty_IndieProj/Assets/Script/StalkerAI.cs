@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
+using Unity.VisualScripting;
+using System.IO;
+using System.Data.Common;
+using UnityEngine.ProBuilder.MeshOperations;
 
 
 public class StalkerAI : MonoBehaviour
@@ -19,6 +24,13 @@ public class StalkerAI : MonoBehaviour
     private int currentWaypointIndex;
     private bool isChasing;
     public bool playerIsCaught;
+
+    
+    public bool hasPowerUp = false;
+    public bool hasRotated = false;
+    public GameObject laser;
+
+
 
     public AudioClip patrolSound;
     public AudioClip chaseSound;
@@ -38,7 +50,7 @@ public class StalkerAI : MonoBehaviour
     void Update()
     {
         
-        if(!playerIsCaught){
+        if(!playerIsCaught || !hasPowerUp){
 
         if (isChasing)
         {
@@ -51,10 +63,14 @@ public class StalkerAI : MonoBehaviour
         }
 
         }
-        else{
-            Stop();
-        }
+ 
+         if(hasPowerUp){
+            Debug.Log("hasPowerUp");
+            StartCoroutine(scan());
 
+            
+            
+         }
     
         
     }
@@ -69,16 +85,12 @@ void Patrol()
     { 
         currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
         agent.SetDestination(waypoints[currentWaypointIndex].position); 
-        StartCoroutine(RandomPause()); 
+
     } 
 
 } 
  
-IEnumerator RandomPause() 
-{ 
-    float pauseDuration = Random.Range(1f, 3f); 
-    yield return new WaitForSeconds(pauseDuration); 
-} 
+
 
 
 
@@ -121,10 +133,11 @@ IEnumerator RandomPause()
     }
 
     void Stop(){
-
         agent.SetDestination( transform.position );
         agent.speed = 0;
         asPlayer.Stop();
+        Debug.Log("stop");
+
         
     }
 
@@ -139,7 +152,82 @@ IEnumerator RandomPause()
 
 
 
-            // Add your game over logic here
         }
+    }
+
+
+
+
+
+
+    IEnumerator scan(){
+        
+        if(!hasRotated){
+        StartCoroutine(Rotate(5));
+        hasRotated = true;
+        }
+        Stop();
+        yield return new WaitForSeconds(10f);
+        hasPowerUp = false;
+        hasRotated = false;
+
+
+
+    }
+    
+    
+
+      IEnumerator Rotate(float duration){   
+        
+
+
+        Vector3 startRotation = transform.eulerAngles;
+        float endRotation = startRotation.z + 360.0f;
+        float t = 0.0f;
+        Debug.Log("Pre-while func");
+
+
+
+        while ( t  < duration)
+        {   
+            laser.SetActive(true);
+
+
+            Stop();
+
+            Debug.Log(" while - t : " + t);
+
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation.z, endRotation, t / duration) % 360.0f;
+            transform.eulerAngles = new Vector3(startRotation.x, yRotation, startRotation.z);
+            yield return null;
+        }
+
+
+        laser.SetActive(false);
+        Debug.Log("laser off");  
+        //Stop();
+        //yield return new WaitForSeconds(10f);
+
+
+
+
+        //Debug.Log("coroutine DONE");
+        //hasPowerUp = false;
+
+
+    }
+
+
+
+
+
+
+    void BoostedCharge(){
+        Rigidbody rbStalkerBot = gameObject.GetComponent<Rigidbody>();
+
+        Vector3 boostedPath = player.position - transform.position;
+
+        rbStalkerBot.AddForce(boostedPath, ForceMode.Impulse );
     }
 }

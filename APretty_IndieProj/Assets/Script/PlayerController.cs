@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         xRayVisor.SetActive(true);
         StartCoroutine(powerUpCountDown());
         renderComponent.rendererFeatures[1].SetActive(hasPowerUp);
-        asPlayer.PlayOneShot(testTubeSmash, 0.7f);
+        asPlayer.PlayOneShot(testTubeSmash, 0.5f);
         asPlayer.clip = heartPounding;
         asPlayer.loop = true;
         asPlayer.Play();
