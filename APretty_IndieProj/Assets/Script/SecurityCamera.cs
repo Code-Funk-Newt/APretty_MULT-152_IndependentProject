@@ -196,7 +196,7 @@ public class SecurityCamera : MonoBehaviour
             isActive = false;
 
 
-            asPlayer.PlayOneShot(cameraBlowoutSound, 0.9f);  // SOUND
+            asPlayer.PlayOneShot(cameraBlowoutSound, 0.8f);  // SOUND
             asPlayer.clip = cameraBurntSound;
             asPlayer.Play();
 

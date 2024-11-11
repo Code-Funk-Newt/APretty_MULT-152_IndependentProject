@@ -22,55 +22,75 @@ public class StalkerAI : MonoBehaviour
 
     private NavMeshAgent agent;
     private int currentWaypointIndex;
+    private int waypointCounter;
+    private int waypointRequired;
+
+
+
     private bool isChasing;
     public bool playerIsCaught;
+
 
     
     public bool hasPowerUp = false;
     public bool hasRotated = false;
+    public bool laserHit = false;
     public GameObject laser;
+
 
 
 
     public AudioClip patrolSound;
     public AudioClip chaseSound;
+    public AudioClip creepywoosh;
     private AudioSource asPlayer;
    
 
     void Start()
-    {
+    {   
+
+        waypointRequired = 5;   // whats required for laser activation 
+        waypointCounter = 0;
+
         agent = GetComponent<NavMeshAgent>();
         currentWaypointIndex = 0;
         isChasing = false;
         asPlayer = GetComponent<AudioSource>();
-        Patrol();
+
+
+        Patrol();   //start moving
         
     }
 
     void Update()
     {
+
+        waypointcounter();
+
+        
         
         if(!playerIsCaught || !hasPowerUp){
 
-        if (isChasing)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            Patrol();
-            DetectPlayer();
-        }
+            if (isChasing)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                Patrol();
+                DetectPlayer();
+            }
 
         }
- 
-         if(hasPowerUp){
-            Debug.Log("hasPowerUp");
-            StartCoroutine(scan());
+            if(playerIsCaught){
+                Stop();
+            }
 
+            //if(hasPowerUp){
+            //Debug.Log("hasPowerUp");
+            //StartCoroutine(scan());
             
-            
-         }
+            //}
     
         
     }
@@ -82,10 +102,17 @@ void Patrol()
 
     agent.speed = patrolSpeed; 
     if (agent.remainingDistance < 0.5f) 
-    { 
+    {   
+
+
+        
         currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
         agent.SetDestination(waypoints[currentWaypointIndex].position); 
 
+
+        Debug.Log("Waypoint Counter: "+ waypointCounter);
+        waypointCounter +=1;
+        
     } 
 
 } 
@@ -160,14 +187,25 @@ void Patrol()
 
 
 
-    IEnumerator scan(){
+    IEnumerator scan(){                         //scan routine
         
-        if(!hasRotated){
+        if(!hasRotated){                //checks for 360 rotation hass happend. only triggers once
         StartCoroutine(Rotate(5));
         hasRotated = true;
         }
+
         Stop();
-        yield return new WaitForSeconds(10f);
+
+
+        yield return new WaitForSeconds(5f);
+        laser.SetActive(false);
+        if(laserHit){
+            asPlayer.PlayOneShot(creepywoosh, 0.9f);
+            BoostedCharge();
+        }
+        yield return new WaitForSeconds(2f);
+
+        laserHit = false;
         hasPowerUp = false;
         hasRotated = false;
 
@@ -177,7 +215,7 @@ void Patrol()
     
     
 
-      IEnumerator Rotate(float duration){   
+      IEnumerator Rotate(float duration){                   // 360 spin coroutine
         
 
 
@@ -188,8 +226,13 @@ void Patrol()
 
 
 
-        while ( t  < duration)
+        while ( t  < duration)          //while loop for rotation
         {   
+            if(laserHit == true){       //stops rotation
+            yield break;
+            }
+
+
             laser.SetActive(true);
 
 
@@ -206,14 +249,6 @@ void Patrol()
 
         laser.SetActive(false);
         Debug.Log("laser off");  
-        //Stop();
-        //yield return new WaitForSeconds(10f);
-
-
-
-
-        //Debug.Log("coroutine DONE");
-        //hasPowerUp = false;
 
 
     }
@@ -223,11 +258,46 @@ void Patrol()
 
 
 
-    void BoostedCharge(){
+    public void BoostedCharge(){
         Rigidbody rbStalkerBot = gameObject.GetComponent<Rigidbody>();
 
         Vector3 boostedPath = player.position - transform.position;
 
         rbStalkerBot.AddForce(boostedPath, ForceMode.Impulse );
     }
+
+
+    public void laserHitPlayer(){
+        Debug.Log("laserHitPlayer: stop corountine");
+        laserHit = true; 
+        
+
+
+
+
+
+        Rigidbody rbStalker = gameObject.GetComponent<Rigidbody>();
+        rbStalker.constraints = RigidbodyConstraints.FreezeRotation;
+
+       
+        
+    }
+
+    void waypointcounter(){
+         
+
+        if(waypointCounter > waypointRequired){
+
+            if(waypointRequired > 1 && !hasRotated){                     //makes sure the waypoint required does go negative & 
+                waypointRequired -= 1;                                   //only happens once per coroutine
+                Debug.Log("Waypoint Required: "+ waypointRequired);
+
+            }
+            
+            waypointCounter = 0;
+
+            StartCoroutine(scan());
+        }
+    }
+        
 }
