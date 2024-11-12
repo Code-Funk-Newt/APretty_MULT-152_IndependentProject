@@ -5,6 +5,7 @@ using UnityEngine;
 public class laserAction : MonoBehaviour
 {
     public GameObject stalker;
+    public GameObject player;
     private AudioSource asPlayer;
     public AudioClip TargetLocked;
     public AudioClip LaserBeam;
@@ -27,7 +28,10 @@ public class laserAction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {   
-            asPlayer.PlayOneShot(TargetLocked, 0.9f);
+            //asPlayer.PlayOneShot(TargetLocked, 0.9f);
+
+            player.GetComponent<PlayerController>().asPlayer.PlayOneShot(TargetLocked, 0.7f);
+
 
             stalker.GetComponent<StalkerAI>().laserHitPlayer();
             

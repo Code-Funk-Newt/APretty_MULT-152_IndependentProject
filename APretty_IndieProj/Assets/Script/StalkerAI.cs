@@ -13,7 +13,7 @@ public class StalkerAI : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform player;
-    public GameObject gameM;
+    public GameObject gameManager;
     public float detectionRange = 15f;
     public float chaseSpeed = 3.5f;
     public float patrolSpeed = 2f;
@@ -164,10 +164,14 @@ void Patrol()
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Rigidbody rbStalker = gameObject.GetComponent<Rigidbody>();
+            rbStalker.constraints = RigidbodyConstraints.FreezeRotation;
+
             // Handle player losing the game
             Debug.Log("Player caught by the stalker! Game Over.");
-            gameM.GetComponent<GameManagerScript>().gameOver();
+            gameManager.GetComponent<GameManagerScript>().gameOver();
             playerIsCaught = true;
+            
 
 
 
@@ -260,20 +264,24 @@ void Patrol()
     }
 
 
+
+
+
     public void laserHitPlayer(){
+
         laserHit = true; 
         
 
 
 
-
-
         Rigidbody rbStalker = gameObject.GetComponent<Rigidbody>();
         rbStalker.constraints = RigidbodyConstraints.FreezeRotation;
-
-       
         
     }
+
+
+
+
 
     void waypointcounter(){
          
