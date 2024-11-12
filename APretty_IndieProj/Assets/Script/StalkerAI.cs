@@ -85,12 +85,6 @@ public class StalkerAI : MonoBehaviour
             if(playerIsCaught){
                 Stop();
             }
-
-            //if(hasPowerUp){
-            //Debug.Log("hasPowerUp");
-            //StartCoroutine(scan());
-            
-            //}
     
         
     }
@@ -163,7 +157,6 @@ void Patrol()
         agent.SetDestination( transform.position );
         agent.speed = 0;
         asPlayer.Stop();
-        Debug.Log("stop");
 
         
     }
@@ -213,6 +206,8 @@ void Patrol()
 
     }
     
+
+
     
 
       IEnumerator Rotate(float duration){                   // 360 spin coroutine
@@ -222,7 +217,6 @@ void Patrol()
         Vector3 startRotation = transform.eulerAngles;
         float endRotation = startRotation.z + 360.0f;
         float t = 0.0f;
-        Debug.Log("Pre-while func");
 
 
 
@@ -238,7 +232,7 @@ void Patrol()
 
             Stop();
 
-            Debug.Log(" while - t : " + t);
+            //Debug.Log(" while - t : " + t);    // <-- counting the relative rotation
 
             t += Time.deltaTime;
             float yRotation = Mathf.Lerp(startRotation.z, endRotation, t / duration) % 360.0f;
@@ -268,7 +262,6 @@ void Patrol()
 
 
     public void laserHitPlayer(){
-        Debug.Log("laserHitPlayer: stop corountine");
         laserHit = true; 
         
 
