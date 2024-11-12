@@ -23,7 +23,7 @@ public class StalkerAI : MonoBehaviour
     private NavMeshAgent agent;
     private int currentWaypointIndex;
     private int waypointCounter;
-    private int waypointRequired;
+    public int waypointRequired = 5;
 
 
 
@@ -33,8 +33,8 @@ public class StalkerAI : MonoBehaviour
 
     
     public bool hasPowerUp = false;
-    public bool hasRotated = false;
-    public bool laserHit = false;
+    private bool hasRotated = false;
+    private bool laserHit = false;
     public GameObject laser;
 
 
@@ -49,7 +49,6 @@ public class StalkerAI : MonoBehaviour
     void Start()
     {   
 
-        waypointRequired = 5;   // whats required for laser activation 
         waypointCounter = 0;
 
         agent = GetComponent<NavMeshAgent>();
