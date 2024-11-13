@@ -10,7 +10,6 @@ public GameObject ePanel;
 
 private void OnMouseUpAsButton(){
     
-    Debug.Log("Duupiee");
     ePanel.GetComponent<ElectricalPanel>().OnRedButtonClick();
 }
 }

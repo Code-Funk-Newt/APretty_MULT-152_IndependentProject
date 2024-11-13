@@ -11,6 +11,7 @@ public class PickUpScript : MonoBehaviour
 
     public float pickUpRange = 10f; //how far the player can pickup the object from
     private GameObject heldObj; //object which we pick up
+    private Vector3 heldObjRotOffset;
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
@@ -110,6 +111,9 @@ public class PickUpScript : MonoBehaviour
             // Smoothly transition the object's position to Vector3(0,0,0) relative to its parent
             StartCoroutine(SmoothTransition(heldObj.transform, rotatePos.transform.position));
 
+            // always forces the object to face the camera rotation
+            heldObj.transform.localRotation = rotatePos.transform.localRotation * Quaternion.Euler(heldObjRotOffset);
+
             // New mouse functions for free movement within the space of the object
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
@@ -122,8 +126,10 @@ public class PickUpScript : MonoBehaviour
             // Rotate 90 degrees on the y-axis when Q is pressed
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                heldObj.transform.Rotate(Vector3.up, 90f);
+                heldObjRotOffset += Vector3.up * 90f;
+                heldObjRotOffset = new Vector3(heldObjRotOffset.x, heldObjRotOffset.y % 360, heldObjRotOffset.z);
             }
+
         }
         else
         {
@@ -140,6 +146,7 @@ public class PickUpScript : MonoBehaviour
         while (elapsedTime < duration)
         {
             obj.position = Vector3.Lerp(startingPos, targetPosition, (elapsedTime / duration));
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
