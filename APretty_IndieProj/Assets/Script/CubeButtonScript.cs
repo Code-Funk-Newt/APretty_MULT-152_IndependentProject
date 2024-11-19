@@ -14,7 +14,7 @@ public Material greenBtnColor;
 private void OnMouseUpAsButton(){
     
     Debug.Log("Cube Clicked");
-    //camerasecuritySystem.GetComponent<CameraConsole>().puzzleSolved = true;
+    camerasecuritySystem.GetComponent<CameraConsole>().puzzleSolved = true;
 }
 
 }

@@ -6,6 +6,7 @@ public class laserAction : MonoBehaviour
 {
     public GameObject stalker;
     public GameObject player;
+    public GameObject robotEye;
     private AudioSource asPlayer;
     public AudioClip TargetLocked;
     public AudioClip LaserBeam;

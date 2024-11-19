@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip testTubeSmash;
     public AudioClip heartPounding;
     public AudioClip exhaleCooldown;
+    public AudioClip lockedOn;
     public AudioSource asPlayer;
 
 

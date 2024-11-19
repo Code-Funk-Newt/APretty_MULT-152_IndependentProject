@@ -261,6 +261,7 @@ void Patrol()
         Vector3 boostedPath = player.position - transform.position;
 
         rbStalkerBot.AddForce(boostedPath, ForceMode.Impulse );
+
     }
 
 

@@ -11,6 +11,7 @@ public class PickUpScript : MonoBehaviour
 
     public float pickUpRange = 10f; //how far the player can pickup the object from
     private GameObject heldObj; //object which we pick up
+    public GameObject raycastOrigin; // the raycast origin
     private Vector3 heldObjRotOffset;
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
@@ -29,7 +30,7 @@ public class PickUpScript : MonoBehaviour
             {   
                 //perform raycast to check if player is looking at object within pickuprange
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+                if (Physics.Raycast(raycastOrigin.transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     // Debug.Log("hitting raycast");
                     Debug.Log(hit.transform.gameObject.tag);

@@ -421,14 +421,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   player: {fileID: 0}
-  gameM: {fileID: 0}
+  gameManager: {fileID: 0}
   detectionRange: 15
   chaseSpeed: 9
   patrolSpeed: 4
+  waypointRequired: 5
   playerIsCaught: 0
   hasPowerUp: 0
+  laser: {fileID: 0}
   patrolSound: {fileID: 8300000, guid: b58040633f668425cb2897ac308f07f2, type: 3}
   chaseSound: {fileID: 8300000, guid: 47bddd2724c374832aaba21d72254ecb, type: 3}
+  creepywoosh: {fileID: 0}
 --- !u!195 &7087692350911051537
 NavMeshAgent:
   m_ObjectHideFlags: 0

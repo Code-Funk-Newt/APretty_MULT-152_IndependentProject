@@ -76,7 +76,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Triggered");
+        //Debug.Log("Triggered");
         if (isOpen)
         {   
             
@@ -88,7 +88,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Untriggered");
+        //Debug.Log("Untriggered");
         if (isOpen)
         {   
             
