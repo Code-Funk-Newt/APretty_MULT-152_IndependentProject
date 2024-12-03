@@ -17,7 +17,7 @@ public class PickUpScript : MonoBehaviour
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
 
-    public GameObject cubeHUDIcon;
+    public GameObject cubeHUDIcon;   //HUD logo
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class PickUpScript : MonoBehaviour
         {
             if (heldObj == null) //if currently not holding anything
             {   
-                cubeHUDIcon.SetActive(true);    //Activates HUD icon
 
                 //perform raycast to check if player is looking at object within pickuprange
                 RaycastHit hit;
@@ -45,6 +44,10 @@ public class PickUpScript : MonoBehaviour
                         Debug.Log("ray hit canPickUp tag");
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
+
+                        
+                        cubeHUDIcon.SetActive(true);    //Activates HUD icon
+
                     }
                 }
             }
