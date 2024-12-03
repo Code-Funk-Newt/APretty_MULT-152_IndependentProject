@@ -37,6 +37,7 @@ public class StalkerAI : MonoBehaviour
     private bool hasRotated = false;
     private bool laserHit = false;
     public GameObject laser;
+    public GameObject laserVisual;
 
 
 
@@ -205,6 +206,11 @@ void Patrol()
 
         yield return new WaitForSeconds(5f);
         laser.SetActive(false);
+        laserVisual.SetActive(false);
+
+        
+
+
         if(laserHit){
             asPlayer.PlayOneShot(creepywoosh, 0.9f);
             BoostedCharge();
@@ -242,6 +248,8 @@ void Patrol()
 
 
             laser.SetActive(true);
+            laserVisual.SetActive(true);
+
 
 
             Stop();
@@ -256,6 +264,9 @@ void Patrol()
 
 
         laser.SetActive(false);
+        laserVisual.SetActive(false);
+
+        
         Debug.Log("laser off");  
 
 

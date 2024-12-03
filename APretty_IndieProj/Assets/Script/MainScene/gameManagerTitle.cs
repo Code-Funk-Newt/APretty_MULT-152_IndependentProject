@@ -42,7 +42,7 @@ public class gameManagerTitle : MonoBehaviour
 
     public void startNewGame(){
 
-        GameManagerScript.numOfRetries = 0;   //Reset the number of tries from other script 
+        GameManagerScript.numOfRetries = 1;   //Reset the number of tries from other script 
         SceneManager.LoadScene(1);
 
     }

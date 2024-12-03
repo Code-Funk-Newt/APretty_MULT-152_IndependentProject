@@ -31,10 +31,12 @@ public class laserAction : MonoBehaviour
         {   
             //asPlayer.PlayOneShot(TargetLocked, 0.9f);
 
-            player.GetComponent<PlayerController>().asPlayer.PlayOneShot(TargetLocked, 0.7f);
+
+            //player.GetComponent<PlayerController>().asPlayer.PlayOneShot(TargetLocked, 0.7f);
 
 
-            stalker.GetComponent<StalkerAI>().laserHitPlayer();
+            //stalker.GetComponent<StalkerAI>().laserHitPlayer();
+          
             
             // Handle player losing the game
             Debug.Log("Player caught by the Scanner");
