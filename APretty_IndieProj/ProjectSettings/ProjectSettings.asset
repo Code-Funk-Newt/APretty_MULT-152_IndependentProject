@@ -884,11 +884,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 0f2936b3-3b67-4be7-9544-ffed6b66b9b1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: APretty_IndieProj 2024-12-04_18-30-30
+  organizationId: dizzy_palette
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

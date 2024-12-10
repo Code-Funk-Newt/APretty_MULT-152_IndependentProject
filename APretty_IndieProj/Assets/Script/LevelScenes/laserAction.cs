@@ -25,24 +25,4 @@ public class laserAction : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(UnityEngine.Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {   
-            //asPlayer.PlayOneShot(TargetLocked, 0.9f);
-
-
-            //player.GetComponent<PlayerController>().asPlayer.PlayOneShot(TargetLocked, 0.7f);
-
-
-            //stalker.GetComponent<StalkerAI>().laserHitPlayer();
-          
-            
-            // Handle player losing the game
-            Debug.Log("Player caught by the Scanner");
-
-
-        }
-    }
-
 }

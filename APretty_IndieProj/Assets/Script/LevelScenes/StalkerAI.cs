@@ -36,8 +36,12 @@ public class StalkerAI : MonoBehaviour
     public bool hasPowerUp = false;
     private bool hasRotated = false;
     private bool laserHit = false;
+
+
     public GameObject laser;
     public GameObject laserVisual;
+    public GameObject targetLockedHUD;
+
 
 
 
@@ -92,10 +96,15 @@ public class StalkerAI : MonoBehaviour
         }
             if(playerIsCaught){
                 Stop();
+                CancelInvoke(); 
             }
     
         
     }
+
+
+
+
 
 void Patrol() 
 {   
@@ -142,6 +151,7 @@ void Patrol()
         }
     }
 
+
     void ChasePlayer()
     {
         agent.speed = chaseSpeed;
@@ -160,6 +170,9 @@ void Patrol()
         }
         
     }
+
+
+
 
     void Stop(){
         agent.SetDestination( transform.position );
@@ -193,7 +206,8 @@ void Patrol()
 
 
     IEnumerator scan(){                         //scan routine
-        
+        if(!playerIsCaught){
+
         if(!hasRotated){                //checks for 360 rotation hass happend. only triggers once
         StartCoroutine(Rotate(5));
         hasRotated = true;
@@ -220,9 +234,10 @@ void Patrol()
         laserHit = false;
         hasPowerUp = false;
         hasRotated = false;
+        
         laserActiveHUDIcon.SetActive(false);    //HUD laser Icon: OFF
 
-
+        }
 
     }
     
@@ -243,6 +258,13 @@ void Patrol()
         while ( t  < duration)          //while loop for rotation
         {   
             if(laserHit == true){       //stops rotation
+
+
+            laser.SetActive(false);                 // turns laser off if player is hit by laser
+            laserVisual.SetActive(false);
+            targetLockedHUD.SetActive(true);
+
+
             yield break;
             }
 
@@ -263,8 +285,9 @@ void Patrol()
         }
 
 
-        laser.SetActive(false);
+        laser.SetActive(false);                     //turns laser off after rotation
         laserVisual.SetActive(false);
+        
 
         
         Debug.Log("laser off");  
@@ -278,6 +301,10 @@ void Patrol()
 
 
     public void BoostedCharge(){
+
+        targetLockedHUD.SetActive(false);           // turns target HUD off
+
+
         Rigidbody rbStalkerBot = gameObject.GetComponent<Rigidbody>();
 
         Vector3 boostedPath = player.position - transform.position;
@@ -297,7 +324,7 @@ void Patrol()
 
 
 
-        Rigidbody rbStalker = gameObject.GetComponent<Rigidbody>();
+        Rigidbody rbStalker = gameObject.GetComponent<Rigidbody>();             //stops robo
         rbStalker.constraints = RigidbodyConstraints.FreezeRotation;
         
     }
@@ -324,5 +351,29 @@ void Patrol()
             StartCoroutine(scan());
         }
     }
+
+
+    public IEnumerator cameraChase(){
+
+        
+        
+        Debug.Log("player is targeted");
+        isChasing = true;
+        InvokeRepeating("ChasePlayer", 0.0f, 0.001f);
+
+  
+
+        yield return new WaitForSeconds(10);
+
+
+        CancelInvoke("ChasePlayer");
+        isChasing = false; 
+        
+        Debug.Log("DONE chase");
+
+
+       
+        
+     }
         
 }

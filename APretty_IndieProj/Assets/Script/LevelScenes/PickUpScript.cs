@@ -109,6 +109,9 @@ public class PickUpScript : MonoBehaviour
         heldObj.transform.position = holdPos.transform.position;
     }
 
+
+
+
     void RotateObject()
     {
         if (Input.GetKey(KeyCode.R)) //hold R key to rotate, change this to whatever key you want
@@ -146,6 +149,8 @@ public class PickUpScript : MonoBehaviour
             canDrop = true;
         }
     }
+
+    
 
     IEnumerator SmoothTransition(Transform obj, Vector3 targetPosition)
     {

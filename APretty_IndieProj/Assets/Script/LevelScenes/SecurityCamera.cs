@@ -28,6 +28,9 @@ public class SecurityCamera : MonoBehaviour
     public GameObject cameraBodyshape;
 
 
+    public GameObject stalker; 
+    public GameObject playerCharacter;
+
 
     public ParticleSystem sparks;
 
@@ -62,11 +65,19 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
+
+
+
+
     void RotateCamera()
     {
         float angle = Mathf.PingPong(Time.time * rotationSpeed, 90f) - 45f; // 90 degrees total sweep
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, initialRotationY + angle, transform.eulerAngles.z);
     }
+
+
+
+
 
     IEnumerator DetectPlayer()
     {
@@ -74,20 +85,48 @@ public class SecurityCamera : MonoBehaviour
         {
             if (isActive)
             {      
-
+                if(!stalker.GetComponent<StalkerAI>().playerIsCaught){
                 
                 Vector3 directionToPlayer = player.position - transform.position;
                 float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-                if (angleToPlayer < fieldOfView && directionToPlayer.magnitude < detectionRange)
-                {
+                if (angleToPlayer < fieldOfView 
+                && directionToPlayer.magnitude < detectionRange 
+                && playerCharacter.GetComponent<PlayerController>().cameraTriggered == false )
+                {   
+
+
+                    playerCharacter.GetComponent<PlayerController>().cameraTriggered = true; // changing bool in player gameobject 
+                    
+                    
                     Debug.Log("Player Detected!");
                     // Add your detection logic here (e.g., trigger an alarm)
+
+
+
+                    StartCoroutine(stalker.GetComponent<StalkerAI>().cameraChase()); // call chase player coroutine
+                    StartCoroutine(playerCharacter.GetComponent<PlayerController>().cameraAlarm()); // sounds and sights of alarm detetction 
+
                 }
+                }
+
+
+               
+
+
             }
             yield return new WaitForSeconds(detectionInterval);
         }
     }
+
+
+    
+
+
+
+
+
+
 
     void DrawFieldOfView()
     {
@@ -190,6 +229,8 @@ public class SecurityCamera : MonoBehaviour
             angle = _angle;
         }
     }
+
+
 
     public void shutDown(){
             Debug.Log("Camera is shut off");

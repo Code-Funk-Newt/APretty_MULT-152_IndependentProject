@@ -25,13 +25,14 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
 
 
-
+    
 
 
 
 
     public bool isCaught;               //GameOver freeze
-    private bool canMove = true;        
+    private bool canMove = true;      
+    public bool cameraTriggered;  
 
 
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     
     private bool hasPowerUp = false;   //Power up 
     public GameObject xRayVisor;
+    public GameObject alarmVisuals;
     [SerializeField] private UniversalRendererData renderComponent;
 
 
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip heartPounding;
     public AudioClip exhaleCooldown;
     public AudioClip lockedOn;
+    public AudioClip alarm;
+    public AudioClip alarmShutOff;
     public AudioSource asPlayer;
 
 
@@ -59,12 +63,21 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        cameraTriggered = false;
+
+
     }
 
     void Update()
     {
+
+    
+    
+
     
     if(!isCaught){    
+
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -114,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    if(isCaught){
+        StopCoroutine(cameraAlarm());
+        asPlayer.Stop();
+    }
+
     }
 
 
@@ -151,5 +169,31 @@ public class PlayerController : MonoBehaviour
         tTubeHUDicon.SetActive(false);
 
     }
+
+
+    public IEnumerator cameraAlarm(){
+        asPlayer.clip = alarm;
+        asPlayer.loop = true;
+        asPlayer.Play();
+        alarmVisuals.SetActive(true);
+
+
+        
+        yield return new WaitForSeconds(10);
+
+        alarmVisuals.SetActive(false);
+        asPlayer.Stop();
+        asPlayer.PlayOneShot(alarmShutOff, 0.4f);
+        cameraTriggered = false; 
+
+
+    }
+
+
+
+
+
+
+
 }
 

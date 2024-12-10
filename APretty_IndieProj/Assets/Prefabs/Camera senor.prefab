@@ -656,6 +656,8 @@ MonoBehaviour:
   cameraBlowoutSound: {fileID: 8300000, guid: 94866897b50054d1da0727813e315618, type: 3}
   spotLightobject: {fileID: 7352779799717380140}
   cameraBodyshape: {fileID: 5098268692967380933}
+  stalker: {fileID: 0}
+  playerCharacter: {fileID: 0}
   sparks: {fileID: 1182711498745742647}
 --- !u!1 &5098268692801616132
 GameObject:
