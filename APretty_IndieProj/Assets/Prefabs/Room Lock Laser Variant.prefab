@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8965270128444806781
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+      propertyPath: online
+      value: 
+      objectReference: {fileID: 658785124239115080}
+    - target: {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+      propertyPath: offline
+      value: 
+      objectReference: {fileID: 2927331290631482891}
+    - target: {fileID: 998507559543924893, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_Name
+      value: Room Lock Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842634414541608838, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 6121783746948905078, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 97.07373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 88.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453098420155585845, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1115169435512058597, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+    - {fileID: 3763002635630874356, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+    - {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+--- !u!1 &658785124239115080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8453098420155585845, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8965270128444806781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1967425864603716684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7432833607149902385, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8965270128444806781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2747666986205956631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6506194299418336362, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8965270128444806781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &673175023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2747666986205956631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a1a1e7af9e84bc9b5c4d42ecc31fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePanel: {fileID: 1967425864603716684}
+--- !u!1 &2927331290631482891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121783746948905078, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8965270128444806781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2975451859902546410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6134434981643802519, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8965270128444806781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1582252681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2975451859902546410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e291bb7b55b4143b86ba78dc58cae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePanel: {fileID: 1967425864603716684}

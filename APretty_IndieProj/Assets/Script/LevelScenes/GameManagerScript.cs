@@ -16,6 +16,8 @@ public class GameManagerScript : MonoBehaviour
     public GameObject instructionUI;
 
 
+    public GameObject stalker;
+
     public float timeStart = 0;      //gametime start
 
 
@@ -30,7 +32,9 @@ public class GameManagerScript : MonoBehaviour
     public bool gameActive; 
 
 
-
+    public AudioClip gameoveralarm;
+    public AudioClip winscreensong;
+    public AudioClip maingameambience;
     private AudioSource asPlayer;
     public static int numOfRetries; 
 
@@ -39,12 +43,18 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
 
-        
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         asPlayer = GetComponent<AudioSource>();
 
-        Debug.Log("Started. Number of Tries: " + numOfRetries);
+
+        if(!anyScreenActive()){
+        asPlayer.clip = maingameambience;
+        asPlayer.Play();
+        }
+
+        //Debug.Log("Started. Number of Tries: " + numOfRetries);
     }
 
     // Update is called once per frame
@@ -83,7 +93,7 @@ public class GameManagerScript : MonoBehaviour
         gameOverUI.SetActive(true); // trigger gameover screen
         player.GetComponent<PlayerController>().isCaught = true;   // stop player movement 
 
-        
+        asPlayer.clip = gameoveralarm;
         asPlayer.Play();
 
         livesWasted.text = "Total patients lost: " + numOfRetries;
@@ -119,6 +129,12 @@ public class GameManagerScript : MonoBehaviour
 
     public void win(){
         
+        player.GetComponent<PlayerController>().isCaught = true;   // stop player movement 
+        stalker.GetComponent<StalkerAI>().playerIsCaught = true;
+
+        asPlayer.clip = winscreensong;
+        asPlayer.Play();
+
         winScreen.SetActive(true);
 
         int seconds = ((int)timeStart % 60);                                //timer 

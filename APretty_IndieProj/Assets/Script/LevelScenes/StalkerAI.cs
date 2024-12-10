@@ -94,7 +94,7 @@ public class StalkerAI : MonoBehaviour
             }
 
         }
-            if(playerIsCaught){
+        if(playerIsCaught){
                 Stop();
                 CancelInvoke(); 
             }

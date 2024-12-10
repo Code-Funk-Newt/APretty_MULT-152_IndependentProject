@@ -9,11 +9,15 @@ public class gameManagerTitle : MonoBehaviour
 
     public GameObject mainMenuUI;
     public GameObject instructionUI;
-    public GameObject otherGameManager;
+    public AudioSource asPlayer;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        asPlayer.Play();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         

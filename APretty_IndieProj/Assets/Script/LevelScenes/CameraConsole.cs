@@ -11,6 +11,8 @@ public class CameraConsole : MonoBehaviour
     public Material redlight;
     public Material offlight;
 
+    public List<GameObject> securityCameras;
+
     public bool puzzleSolved = false; // This should be set to true when the puzzle is solved
 
      
@@ -69,14 +71,17 @@ public class CameraConsole : MonoBehaviour
         if (puzzleSolved)
         {
             Debug.Log("shutoffredclick");
-            shutDownCamera();
+            shutDownCameras();
         }
     }
 
-    private void shutDownCamera()
+    private void shutDownCameras()
     {
+        foreach(GameObject camera in securityCameras){
         // shuts camera down
-        securityCamera.GetComponent<SecurityCamera>().shutDown();
+        camera.GetComponent<SecurityCamera>().shutDown();
+
+        }
 
         puzzleSolved = false; // button turns grey again
 

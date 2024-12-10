@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MultiButtonScript : MonoBehaviour
 {
-    public GameObject camerasecuritySystem;
+    public GameObject doorSecuritySystem;
     public Material greenBtnColor;
     public AudioClip btnClick;
     public AudioClip SystemOn;
@@ -35,7 +35,7 @@ public class MultiButtonScript : MonoBehaviour
         {   
             Debug.Log("3buttons clicked");
             asPlayer.PlayOneShot(SystemOn, 5f);
-            camerasecuritySystem.GetComponent<CameraConsole>().puzzleSolved = true;
+            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = true;
         }
 
         }

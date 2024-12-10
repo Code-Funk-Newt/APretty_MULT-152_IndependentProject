@@ -408,6 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   openHeight: 5
+  doorUpsound: {fileID: 8300000, guid: 886408ea91a3a493fb076341680d8bbc, type: 3}
 --- !u!64 &358716979058021160
 MeshCollider:
   m_ObjectHideFlags: 0
