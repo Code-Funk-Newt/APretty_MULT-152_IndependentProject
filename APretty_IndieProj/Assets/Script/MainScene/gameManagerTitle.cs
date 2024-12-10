@@ -57,4 +57,6 @@ public class gameManagerTitle : MonoBehaviour
 
     }
 
+    /** cool delete later **/
+
 }
