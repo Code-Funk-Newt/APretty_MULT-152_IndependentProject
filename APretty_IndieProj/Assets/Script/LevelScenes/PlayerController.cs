@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
         alarmVisuals.SetActive(false);
         asPlayer.Stop();
-        asPlayer.PlayOneShot(alarmShutOff, 0.4f);
+        asPlayer.PlayOneShot(alarmShutOff, 0.2f);
         cameraTriggered = false; 
 
 

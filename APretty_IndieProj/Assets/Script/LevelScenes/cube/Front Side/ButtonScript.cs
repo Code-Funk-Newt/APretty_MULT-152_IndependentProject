@@ -5,15 +5,42 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public delegate void ButtonClickedHandler(GameObject button);
-    public event ButtonClickedHandler OnButtonClicked;
+
     public bool clickedOn;
+    public GameObject cubeScript;
+
+
 
     private void start(){
-        clickedOn = true;
+        clickedOn = false;
+
     }
 
-    private void OnMouseUpAsButton()
+    private void update(){
+        
+
+    }
+
+    public void OnMouseUp()
     {
-        OnButtonClicked?.Invoke(gameObject);
+       if(!clickedOn){
+
+        cubeScript.GetComponent<MultiButtonScript>().ButtonClickedOn(gameObject);
+        clickedOn = true;
+       
+        }
+        else{
+
+        
+        cubeScript.GetComponent<MultiButtonScript>().ButtonClickedOff(gameObject);
+        clickedOn = false;
+
+
+
+        }
+
+        
+
+
     }
 }

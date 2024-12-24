@@ -15,6 +15,7 @@ public class PickUpScript : MonoBehaviour
     private Vector3 heldObjRotOffset;
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
+    public bool objectIsHeld; // if player is holding something
     private int LayerNumber; //layer index
 
     public GameObject cubeHUDIcon;   //HUD logo
@@ -22,6 +23,7 @@ public class PickUpScript : MonoBehaviour
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
+        objectIsHeld = false;
     }
 
     void Update()
@@ -41,11 +43,17 @@ public class PickUpScript : MonoBehaviour
                     //make sure pickup tag is attached
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {
+
+                        
+
+
                         Debug.Log("ray hit canPickUp tag");
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
 
-                        
+
+                        objectIsHeld = true;
+
                         cubeHUDIcon.SetActive(true);    //Activates HUD icon
 
                     }
@@ -59,6 +67,8 @@ public class PickUpScript : MonoBehaviour
             if (canDrop == true)
             {
                 cubeHUDIcon.SetActive(false);    //Deactivates HUD icon
+
+                objectIsHeld = false;
 
                 StopClipping(); //prevents object from clipping through walls
                 DropObject();

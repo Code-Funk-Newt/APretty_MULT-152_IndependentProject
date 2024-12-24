@@ -6,7 +6,9 @@ public class MultiButtonScript : MonoBehaviour
 {
     public GameObject doorSecuritySystem;
     public Material greenBtnColor;
+    public Material offColor;
     public AudioClip btnClick;
+    public AudioClip btnOff;
     public AudioClip SystemOn;
     public AudioSource asPlayer;
     public List<GameObject> buttons; // List of all button GameObjects
@@ -15,31 +17,54 @@ public class MultiButtonScript : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject button in buttons)
-        {
-            button.GetComponent<ButtonScript>().OnButtonClicked += ButtonClicked;
-        }
+
+
     }
 
-    private void ButtonClicked(GameObject button)
-    {
-        if(button.GetComponent<ButtonScript>().clickedOn == false ){        // perameter so we can click twice on button
-        asPlayer.PlayOneShot(btnClick, 0.7f);
-        button.GetComponent<Renderer>().material = greenBtnColor;
-        buttonsClicked++;
-        button.GetComponent<ButtonScript>().clickedOn = true;
+    private void Update(){
 
-         //if (buttonsClicked == buttons.Count)  // <---original buttonscript
 
         if (buttonsClicked >= 3)                // the amounted needed to unlock a system
         {   
-            Debug.Log("3buttons clicked");
-            asPlayer.PlayOneShot(SystemOn, 5f);
-            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = true;
+            asPlayer.PlayOneShot(SystemOn, 0.3f);
+            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = true;   // turns electrical panel on
+        }
+        else{
+
+            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = false;  // turns electrical panel off
         }
 
-        }
 
- 
+
+    }
+
+
+
+    public void ButtonClickedOn(GameObject button){
+        if(button.GetComponent<ButtonScript>().clickedOn == false ){        // perameter so we cant click twice on button
+
+        asPlayer.PlayOneShot(btnClick, 0.7f);
+        button.GetComponent<Renderer>().material = greenBtnColor;
+        buttonsClicked++;  
+
+
+        Debug.Log("ON cube button");
+
+        }
+    }
+
+    public void ButtonClickedOff(GameObject button){
+
+
+        if(button.GetComponent<ButtonScript>().clickedOn == true ){
+            
+            asPlayer.PlayOneShot(btnOff, 0.9f);
+            button.GetComponent<Renderer>().material = offColor;
+            buttonsClicked--;  
+
+        
+         Debug.Log("OFF cube button");
+
+        }
     }
 }

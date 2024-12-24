@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,6 +19,7 @@ public class ElectricalPanelLaser : MonoBehaviour
     public Material redBtnColor;
 
     public AudioSource asPlayer;
+    public AudioClip powerDown;
     public AudioClip buttonActive;
 
     public bool puzzleSolved = false; // This should be set to true when the puzzle is solved
@@ -108,15 +108,17 @@ public class ElectricalPanelLaser : MonoBehaviour
 
     private void OpenDoor()
     {
-        // Logic to open the door
-        //Debug.Log("greenclick:ii");
+        
+        // Turn On laserwall
+
         laserWall.GetComponent<LaserWall>().turnOnLaserWall();
         lockLight.GetComponent<Renderer>().material = greenlight; //green light on
     }
 
     private void LockDoor()
     {
-        // Logic to lock the door
+        // Turn Off laserwall
+        asPlayer.PlayOneShot(powerDown, 0.7f);
         laserWall.GetComponent<LaserWall>().turnOffLaserWall();
         lockLight.GetComponent<Renderer>().material = redlight; //red light on
     }
