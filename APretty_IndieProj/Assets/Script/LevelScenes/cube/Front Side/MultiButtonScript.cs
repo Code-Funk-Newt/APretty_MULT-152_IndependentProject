@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public class BooleanItem{
+        public bool value;
+    }
+
 public class MultiButtonScript : MonoBehaviour
 {
     public GameObject doorSecuritySystem;
@@ -13,11 +19,26 @@ public class MultiButtonScript : MonoBehaviour
     public AudioSource asPlayer;
     public List<GameObject> buttons; // List of all button GameObjects
 
+
+
+ 
+
+    // Public list of BooleanItem
+    public List<BooleanItem> booleanLockList = new List<BooleanItem>();
+
+
+
+
+
     private int buttonsClicked = 0;
 
     private void Start()
     {
-
+    
+        // Initialize the list with some values
+        booleanLockList.Add(new BooleanItem { value = false });
+        booleanLockList.Add(new BooleanItem { value = false });
+        booleanLockList.Add(new BooleanItem { value = false });
 
     }
 
@@ -36,12 +57,25 @@ public class MultiButtonScript : MonoBehaviour
 
 
 
+        // DEBUG LIST CHECK:
+        /**
+        if (booleanLockList.Count > 0)
+        {
+            for(int x = 0; x < 9; x++){
+            Debug.Log( x +"boolean value: " + booleanLockList[x].value);
+            }
+
+        }
+        **/
+        }
+
+
     }
 
 
 
     public void ButtonClickedOn(GameObject button){
-        if(button.GetComponent<ButtonScript>().clickedOn == false ){        // perameter so we cant click twice on button
+        if(button.GetComponent<ButtonScript>().clickedOff == false ){        // perameter so we cant click twice on button
 
         asPlayer.PlayOneShot(btnClick, 0.7f);
         button.GetComponent<Renderer>().material = greenBtnColor;
@@ -56,7 +90,7 @@ public class MultiButtonScript : MonoBehaviour
     public void ButtonClickedOff(GameObject button){
 
 
-        if(button.GetComponent<ButtonScript>().clickedOn == true ){
+        if(button.GetComponent<ButtonScript>().clickedOff == true ){
             
             asPlayer.PlayOneShot(btnOff, 0.9f);
             button.GetComponent<Renderer>().material = offColor;

@@ -6,13 +6,13 @@ public class ButtonScript : MonoBehaviour
 {
     public delegate void ButtonClickedHandler(GameObject button);
 
-    public bool clickedOn;
+    public bool clickedOff;
     public GameObject cubeScript;
 
 
 
     private void start(){
-        clickedOn = false;
+        clickedOff = false;
 
     }
 
@@ -23,17 +23,17 @@ public class ButtonScript : MonoBehaviour
 
     public void OnMouseUp()
     {
-       if(!clickedOn){
+       if(!clickedOff){
 
         cubeScript.GetComponent<MultiButtonScript>().ButtonClickedOn(gameObject);
-        clickedOn = true;
+        clickedOff = true;
        
         }
         else{
 
         
         cubeScript.GetComponent<MultiButtonScript>().ButtonClickedOff(gameObject);
-        clickedOn = false;
+        clickedOff = false;
 
 
 
