@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 
 [System.Serializable]
@@ -17,6 +19,8 @@ public class MultiButtonScript : MonoBehaviour
     public AudioClip btnOff;
     public AudioClip SystemOn;
     public AudioSource asPlayer;
+
+
     public List<GameObject> buttons; // List of all button GameObjects
 
 
@@ -48,17 +52,18 @@ public class MultiButtonScript : MonoBehaviour
         if (buttonsClicked >= 3)                // the amounted needed to unlock a system
         {   
             asPlayer.PlayOneShot(SystemOn, 0.3f);
-            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = true;   // turns electrical panel on
+            doorSecuritySystem.GetComponent<frontSideElectricalPanel>().puzzleSolved = true;   // turns electrical panel on
         }
         else{
 
-            doorSecuritySystem.GetComponent<ElectricalPanel>().puzzleSolved = false;  // turns electrical panel off
+            doorSecuritySystem.GetComponent<frontSideElectricalPanel>().puzzleSolved = false;  // turns electrical panel off
         }
 
 
 
         // DEBUG LIST CHECK:
-        /**
+
+        /**        
         if (booleanLockList.Count > 0)
         {
             for(int x = 0; x < 9; x++){
@@ -67,10 +72,26 @@ public class MultiButtonScript : MonoBehaviour
 
         }
         **/
+
+        
+        // DEBUG LIST CHECK for frontCube:
+        /**
+        if (buttons.Count > 0)
+        {
+            for(int x = 0; x < 9; x++){
+            Debug.Log( x +" boolean value: " + buttons[x].GetComponent<ButtonScript>().clickedOff);
+            }
+
+        }
+        **/
+        
+
+
+        
         }
 
 
-    }
+ 
 
 
 

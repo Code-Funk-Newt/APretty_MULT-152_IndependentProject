@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8051908872449713056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+      propertyPath: puzzleSolved
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 998507559543924893, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_Name
+      value: Room Lock 2Switch Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 60.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 53.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820777472057801840, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1466819710, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 23a8e11658ed34ee6a98175b49b4e97d, type: 3}
+--- !u!1 &619415087566764433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7432833607149902385, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2606887143166433620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619415087566764433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d3ea75ff97f437fbe984e5d80fa373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenButton: {fileID: 4224310927806542903}
+  redButton: {fileID: 3887878935810031562}
+  offline: {fileID: 4272457644973251542}
+  online: {fileID: 1941421216265172629}
+  door: {fileID: 0}
+  lockLight: {fileID: 5219554820790369387}
+  secondSwitch: {fileID: 0}
+  redlight: {fileID: 2100000, guid: b3da5b06b52b74b6cb8116b39a370e97, type: 2}
+  greenlight: {fileID: 2100000, guid: 0370d14038ab847749dd0beedc3ae0c9, type: 2}
+  offlight: {fileID: 2100000, guid: 2e3bd1be8dd204b7a96b5f450bece8a8, type: 2}
+  greenBtnColor: {fileID: 2100000, guid: af2f57712898b4c6398f9837e5f14e24, type: 2}
+  redBtnColor: {fileID: 2100000, guid: b8dec9effbd604d358eae8c0957da1f4, type: 2}
+  asPlayer: {fileID: 6427017709350176509}
+  buttonActive: {fileID: 8300000, guid: c75f26999b3b449a39e8819e099f6967, type: 3}
+  puzzleSolved: 0
+--- !u!1 &1941421216265172629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8453098420155585845, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3887878935810031562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6506194299418336362, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2915819969497376136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3887878935810031562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f4ccf1c85f42e68d31f39e2da7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePanel: {fileID: 0}
+--- !u!1 &4224310927806542903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6134434981643802519, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023564516888034154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224310927806542903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49aeb5f13c324479b172b6fff813130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePanel: {fileID: 619415087566764433}
+--- !u!1 &4272457644973251542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121783746948905078, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5219554820790369387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2869273457417084875, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6427017709350176509 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3931496219797890397, guid: 23a8e11658ed34ee6a98175b49b4e97d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8051908872449713056}
+  m_PrefabAsset: {fileID: 0}

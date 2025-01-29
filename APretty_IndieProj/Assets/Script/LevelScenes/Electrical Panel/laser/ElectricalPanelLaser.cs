@@ -106,7 +106,7 @@ public class ElectricalPanelLaser : MonoBehaviour
         }
     }
 
-    private void OpenDoor()
+    public void OpenDoor()
     {
         
         // Turn On laserwall
@@ -115,7 +115,7 @@ public class ElectricalPanelLaser : MonoBehaviour
         lockLight.GetComponent<Renderer>().material = greenlight; //green light on
     }
 
-    private void LockDoor()
+    public void LockDoor()
     {
         // Turn Off laserwall
         asPlayer.PlayOneShot(powerDown, 0.7f);
