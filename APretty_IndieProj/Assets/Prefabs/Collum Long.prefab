@@ -5497,10 +5497,25 @@ PrefabInstance:
       propertyPath: m_SelectedVertices.Array.data[127]
       value: 317
       objectReference: {fileID: 0}
+    - target: {fileID: 8084200309666744584, guid: 406eeaf8167604e3e9a7477c8d211a49,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 9.571397
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084200309666744584, guid: 406eeaf8167604e3e9a7477c8d211a49,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -4.2856975
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084200309666744584, guid: 406eeaf8167604e3e9a7477c8d211a49,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.0016195319
+      objectReference: {fileID: 0}
     - target: {fileID: 8406238365171351573, guid: 406eeaf8167604e3e9a7477c8d211a49,
         type: 3}
       propertyPath: m_Name
-      value: Collum Variant
+      value: Collum Long
       objectReference: {fileID: 0}
     - target: {fileID: 8406238365171351573, guid: 406eeaf8167604e3e9a7477c8d211a49,
         type: 3}

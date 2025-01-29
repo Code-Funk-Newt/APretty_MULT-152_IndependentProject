@@ -161,7 +161,7 @@ public class frontSideElectricalPanel : MonoBehaviour
         
         if (buttonValue != clickedOffState)
         {
-            Debug.Log($"Mismatch at index {i}: buttonValue = {buttonValue}, clickedOff = {clickedOffState}");
+            //Debug.Log($"Mismatch at index {i}: buttonValue = {buttonValue}, clickedOff = {clickedOffState}");
             return false; // Return false if any mismatch is found
         }
     }

@@ -36,6 +36,10 @@ public class MultiButtonScript : MonoBehaviour
 
     private int buttonsClicked = 0;
 
+    public bool soundSwitch;       // boolean to make sure if statement stops repeating
+
+
+
     private void Start()
     {
     
@@ -44,21 +48,28 @@ public class MultiButtonScript : MonoBehaviour
         booleanLockList.Add(new BooleanItem { value = false });
         booleanLockList.Add(new BooleanItem { value = false });
 
+
+        soundSwitch = true;          // boolean to make sure if statement stops repeating
+
     }
 
     private void Update(){
 
+        
 
-        if (buttonsClicked >= 3)                // the amounted needed to unlock a system
+        if (buttonsClicked == 3 && doorSecuritySystem.GetComponent<frontSideElectricalPanel>().CheckMatch() && soundSwitch)         // the number of buttons needed to unlock a system and if the puzzle is solved = sound
         {   
             asPlayer.PlayOneShot(SystemOn, 0.3f);
-            doorSecuritySystem.GetComponent<frontSideElectricalPanel>().puzzleSolved = true;   // turns electrical panel on
+            Debug.Log("MultiButton : Sound and Puzzle solved ");
+            soundSwitch = false;
+            
         }
-        else{
+        
+        if(buttonsClicked < 3 && !doorSecuritySystem.GetComponent<frontSideElectricalPanel>().CheckMatch() && !soundSwitch){
 
-            doorSecuritySystem.GetComponent<frontSideElectricalPanel>().puzzleSolved = false;  // turns electrical panel off
+            soundSwitch = true;
+            
         }
-
 
 
         // DEBUG LIST CHECK:
@@ -96,6 +107,7 @@ public class MultiButtonScript : MonoBehaviour
 
 
     public void ButtonClickedOn(GameObject button){
+
         if(button.GetComponent<ButtonScript>().clickedOff == false ){        // perameter so we cant click twice on button
 
         asPlayer.PlayOneShot(btnClick, 0.7f);
@@ -106,6 +118,12 @@ public class MultiButtonScript : MonoBehaviour
         Debug.Log("ON cube button");
 
         }
+
+
+
+
+
+
     }
 
     public void ButtonClickedOff(GameObject button){

@@ -198,6 +198,15 @@ void Patrol()
 
 
         }
+
+        if(collision.gameObject.CompareTag("laserWall")){               //statement in place to prevent the Stalker droid from getting stuck at a laser wall
+
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
+            agent.SetDestination(waypoints[currentWaypointIndex].position); 
+
+
+            
+        }
     }
 
 
