@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class gameManagerTitle : MonoBehaviour
 {
+    static bool credits_IsDeleted = false;
 
     public GameObject mainMenuUI;
     public GameObject instructionUI;
+    public GameObject creditScreen;
+
     public AudioSource asPlayer;
 
 
@@ -16,10 +19,15 @@ public class gameManagerTitle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
         asPlayer.Play();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if(credits_IsDeleted){
+            Destroy(creditScreen);
+        }
+        
         
     }
 
@@ -28,6 +36,14 @@ public class gameManagerTitle : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+
+        if(Input.GetKey(KeyCode.Space)){
+            Destroy(creditScreen);
+            credits_IsDeleted = true;
+        }
+
+
     }
 
     public void mainMenu(){
@@ -51,12 +67,14 @@ public class gameManagerTitle : MonoBehaviour
 
     }
 
+
+
     public void quit(){
         
         Application.Quit();
 
     }
 
-    /** cool delete later **/
+    
 
 }
